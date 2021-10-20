@@ -21,6 +21,7 @@ namespace WebBase
 
             host.Run();
 
+
         }
 
         private static void CreateDbIfNotExists(IHost host)
