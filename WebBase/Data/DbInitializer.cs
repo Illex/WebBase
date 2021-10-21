@@ -16,16 +16,16 @@ namespace ContosoUniversity.Data
                 return;   // DB has been seeded
             }
 
-            var students = new Student[]
+        var students = new Student[]
             {
-            new Student{FirstMidName="Carson",LastName="Alexander",EnrollmentDate=DateTime.Parse("2005-09-01")},
-            new Student{FirstMidName="Meredith",LastName="Alonso",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Student{FirstMidName="Arturo",LastName="Anand",EnrollmentDate=DateTime.Parse("2003-09-01")},
-            new Student{FirstMidName="Gytis",LastName="Barzdukas",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Student{FirstMidName="Yan",LastName="Li",EnrollmentDate=DateTime.Parse("2002-09-01")},
-            new Student{FirstMidName="Peggy",LastName="Justice",EnrollmentDate=DateTime.Parse("2001-09-01")},
-            new Student{FirstMidName="Laura",LastName="Norman",EnrollmentDate=DateTime.Parse("2003-09-01")},
-            new Student{FirstMidName="Nino",LastName="Olivetto",EnrollmentDate=DateTime.Parse("2005-09-01")}
+            new Student{uid="u0000000", FirstMidName="Carson",LastName="Alexander", phoneNumber="000-000-0000", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000001", FirstMidName="Meredith",LastName="Alonso", phoneNumber="000-000-0001", currentDegree="BS", currentProgram="CS" , gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000002", FirstMidName="Arturo",LastName="Anand", phoneNumber="000-000-0002", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000003", FirstMidName="Gytis",LastName="Barzdukas", phoneNumber="000-000-0030", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000004", FirstMidName="Yan",LastName="Li", phoneNumber="000-000-0004", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000005", FirstMidName="Peggy",LastName="Justice", phoneNumber="000-000-0005", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000006", FirstMidName="Laura",LastName="Norman", phoneNumber="000-000-0006", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
+            new Student{uid="u0000007", FirstMidName="Nino",LastName="Olivetto", phoneNumber="000-000-0007", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now}
             };
             foreach (Student s in students)
             {
@@ -33,15 +33,15 @@ namespace ContosoUniversity.Data
             }
             context.SaveChanges();
 
-            var courses = new Course[]
+        var courses = new Course[]
             {
-            new Course{CourseID=1050,Title="Chemistry",Credits=3},
-            new Course{CourseID=4022,Title="Microeconomics",Credits=3},
-            new Course{CourseID=4041,Title="Macroeconomics",Credits=3},
-            new Course{CourseID=1045,Title="Calculus",Credits=4},
-            new Course{CourseID=3141,Title="Trigonometry",Credits=4},
-            new Course{CourseID=2021,Title="Composition",Credits=3},
-            new Course{CourseID=2042,Title="Literature",Credits=4}
+            new Course{CourseID="1050", semesters="Fall", title="Chemistry", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes=""},
+            new Course{CourseID="4022", semesters="Fall", title="Microeconomics", year=2021,  department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes=""},
+            new Course{CourseID="4041", semesters="Fall", title="Macroeconomics", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes=""},
+            new Course{CourseID="1045", semesters="Fall", title="Calculus", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=4, numEnrollments=12, notes=""},
+            new Course{CourseID="3141", semesters="Fall", title="Trigonometry", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=4, numEnrollments=12, notes=""},
+            new Course{CourseID="2021", semesters="Fall", title="Composition", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes=""},
+            new Course{CourseID="2042", semesters="Fall", title="Literature", year=2021, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=4, numEnrollments=12, notes=""}
             };
             foreach (Course c in courses)
             {
