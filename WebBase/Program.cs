@@ -8,6 +8,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using ContosoUniversity.Data;
 using Microsoft.Extensions.DependencyInjection;
+using WebBase.Data;
+using Microsoft.AspNetCore.Identity;
+using WebBase.Areas.Identity.Data;
 
 namespace WebBase
 {
@@ -31,6 +34,13 @@ namespace WebBase
                 {
                     var context = services.GetRequiredService<SchoolContext>();
                     DbInitializer.Initialize(context);
+
+                    var context2 = services.GetRequiredService<UsersRolesDB>();
+                    UserManager<TAUser> um = services.GetRequiredService<UserManager<TAUser>>();
+                    RoleManager<IdentityRole> rm = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    UsersDbInitializer.Initialize(context2, um, rm);
+
+
                 }
                 catch (Exception ex)
                 {
