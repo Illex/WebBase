@@ -30,8 +30,8 @@ namespace WebBase
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-                try
-                {
+               // try
+               // {
                     var context = services.GetRequiredService<SchoolContext>();
                     DbInitializer.Initialize(context);
 
@@ -41,12 +41,12 @@ namespace WebBase
                     UsersDbInitializer.Initialize(context2, um, rm);
 
 
-                }
-                catch (Exception ex)
-                {
-                    var logger = services.GetRequiredService<ILogger<Program>>();
-                    logger.LogError(ex, "An error occurred creating the DB.");
-                }
+              //  }
+              //  catch (Exception ex)
+              //  {
+              //      var logger = services.GetRequiredService<ILogger<Program>>();
+              //      logger.LogError(ex, "An error occurred creating the DB.");
+              //  }
             }
         }
 

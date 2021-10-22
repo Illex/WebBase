@@ -18,10 +18,12 @@ namespace WebBase.Areas.Identity
             builder.ConfigureServices((context, services) => {
                 services.AddDbContext<UsersRolesDB>(options =>
                     options.UseSqlServer(
-                        context.Configuration.GetConnectionString("TAUsersRolesDB")));
+                        context.Configuration.GetConnectionString("UsersRolesDBConnection")));
 
-                services.AddDefaultIdentity<URCUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                    .AddEntityFrameworkStores<UsersRolesDB>();
+                services.AddDefaultIdentity<TAUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UsersRolesDB>();                
+
+                //tells the system to use roles? breaks system
+                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>();
             });
         }
     }
