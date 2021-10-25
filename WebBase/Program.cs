@@ -16,37 +16,40 @@ namespace WebBase
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var host = CreateHostBuilder(args).Build();
 
-            CreateDbIfNotExists(host);
+            await CreateDbIfNotExists(host);
 
             host.Run();
         }
 
-        private static void CreateDbIfNotExists(IHost host)
+        private static async Task CreateDbIfNotExists(IHost host)
         {
             using (var scope = host.Services.CreateScope())
             {
                 var services = scope.ServiceProvider;
-               // try
-               // {
+                try
+                {
                     var context = services.GetRequiredService<SchoolContext>();
-                    DbInitializer.Initialize(context);
+                    DbInitializer.Initialize(context);                   
+                }
+                catch (Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred creating the DB.");
+                }
+            }
+            using (var scope = host.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
 
-                    var context2 = services.GetRequiredService<UsersRolesDB>();
-                    UserManager<TAUser> um = services.GetRequiredService<UserManager<TAUser>>();
-                    RoleManager<IdentityRole> rm = services.GetRequiredService<RoleManager<IdentityRole>>();
-                    UsersDbInitializer.Initialize(context2, um, rm);
-
-
-              //  }
-              //  catch (Exception ex)
-              //  {
-              //      var logger = services.GetRequiredService<ILogger<Program>>();
-              //      logger.LogError(ex, "An error occurred creating the DB.");
-              //  }
+                var context2 = services.GetRequiredService<UsersRolesDB>();
+                UserManager<TAUser> um = services.GetRequiredService<UserManager<TAUser>>();
+                //dependency injection for this is missing
+                RoleManager<IdentityRole> rm = services.GetRequiredService<RoleManager<IdentityRole>>();
+                await UsersDbInitializer.Initialize(context2, um, rm);
             }
         }
 

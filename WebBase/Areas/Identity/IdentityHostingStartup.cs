@@ -20,10 +20,11 @@ namespace WebBase.Areas.Identity
                     options.UseSqlServer(
                         context.Configuration.GetConnectionString("UsersRolesDBConnection")));
 
-                services.AddDefaultIdentity<TAUser>(options => options.SignIn.RequireConfirmedAccount = true).AddEntityFrameworkStores<UsersRolesDB>();                
+                //set email confirmation to false?
+                services.AddDefaultIdentity<TAUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<UsersRolesDB>();                
 
                 //tells the system to use roles? breaks system
-                services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>();
+                //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>();
             });
         }
     }
