@@ -9,5 +9,6 @@ namespace WebBase.Areas.Identity.Data
     // Add profile data for application users by adding properties to the URCUser class
     public class TAUser : IdentityUser
     {
+        public string unid { get; set; }       
     }
 }

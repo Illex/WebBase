@@ -32,6 +32,18 @@ namespace WebBase
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddControllersWithViews();
+
+            services.AddAuthentication()
+            .AddGoogle(options =>
+            {
+                IConfigurationSection googleAuthNSection = Configuration.GetSection("/WebBase/Authentication:Google");
+
+                //options.ClientId = googleAuthNSection["ClientId"];
+                //options.ClientSecret = googleAuthNSection["ClientSecret"];
+
+                //definitley bad code can't get program to read my secrets file for some reason
+               
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

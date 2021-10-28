@@ -3,9 +3,11 @@
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
     <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <UserSecretsId>7064bb83-826a-4e2d-80f5-718d1432d8a7</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />

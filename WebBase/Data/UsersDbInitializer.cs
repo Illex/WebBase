@@ -26,14 +26,14 @@ namespace WebBase
 
             var users = new TAUser[]
                 {
-            new TAUser{UserName="u0000000@utah.edu", Email="u0000000@utah.edu" },// Id="u0000000"},
-            new TAUser{UserName="u0000001@utah.edu", Email="u0000001@utah.edu" },// Id="u0000001"},
-            new TAUser{UserName="u0000002@utah.edu", Email="u0000002@utah.edu" },// Id="u0000002"},
-            new TAUser{UserName="u0000003@utah.edu", Email="u0000003@utah.edu" }, //Id="u0000003"},
-            new TAUser{UserName="u0000004@utah.edu", Email="u0000004@utah.edu" }, //Id="u0000004"},
-            new TAUser{UserName="u0000005@utah.edu", Email="u0000005@utah.edu" },  //Id="u0000005"},
-            new TAUser{UserName="professor@utah.edu", Email="professor@utah.edu" },//  Id="u0000006"},
-            new TAUser {UserName = "admin@utah.edu", Email = "admin@utah.edu" }//, Id="u0000007"},
+            new TAUser{UserName="u0000000@utah.edu", Email="u0000000@utah.edu", unid="u0000000"},
+            new TAUser{UserName="u0000001@utah.edu", Email="u0000001@utah.edu", unid="u0000001"},
+            new TAUser{UserName="u0000002@utah.edu", Email="u0000002@utah.edu", unid="u0000002"},
+            new TAUser{UserName="u0000003@utah.edu", Email="u0000003@utah.edu", unid="u0000003"},
+            new TAUser{UserName="u0000004@utah.edu", Email="u0000004@utah.edu", unid="u0000004"},
+            new TAUser{UserName="u0000005@utah.edu", Email="u0000005@utah.edu", unid="u0000005"},
+            new TAUser{UserName="professor@utah.edu", Email="professor@utah.edu", unid="u0000006"},
+            new TAUser {UserName = "admin@utah.edu", Email = "admin@utah.edu", unid="u0000007"},
                 };
             
             //poor security, easy to test, all passwords are the same as the given username
