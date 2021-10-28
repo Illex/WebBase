@@ -44,11 +44,11 @@ namespace WebBase
                 //await um.ConfirmEmailAsync(u, u.Email);
                 //context.SaveChanges();
 
-                if (u.UserName == "Professor")
+                if (u.UserName == "professor@utah.edu")
                 {
                     await um.AddToRoleAsync(u, "Professor");
                 }
-                else if (u.UserName == "Administrator")
+                else if (u.UserName == "admin@utah.edu")
                 {
                    await um.AddToRoleAsync(u, "Administrator");
                 }

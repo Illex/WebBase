@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebBase.Controllers
 {
+    [Authorize]
     public class CoursesController : Controller
     {
         private readonly SchoolContext _context;
@@ -20,12 +22,14 @@ namespace WebBase.Controllers
         }
 
         // GET: Courses
+        [Authorize(Roles = "Administrator, Professor")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Courses.ToListAsync());
         }
 
         // GET: Courses/Details/5
+        [Authorize(Roles = "Administrator, Professor, Applicant")]
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -43,6 +47,7 @@ namespace WebBase.Controllers
             return View(course);
         }
 
+        [Authorize(Roles  = "Administrator")]
         // GET: Courses/Create
         public IActionResult Create()
         {
@@ -51,7 +56,7 @@ namespace WebBase.Controllers
 
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.       
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseID,semesters,title,year,department,section,description,professorUNID,professorName,ClassTimes,location,Credits,numEnrollments,notes")] Course course)
@@ -66,6 +71,7 @@ namespace WebBase.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -85,7 +91,7 @@ namespace WebBase.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]        
         public async Task<IActionResult> Edit(string id, [Bind("CourseID,semesters,title,year,department,section,description,professorUNID,professorName,ClassTimes,location,Credits,numEnrollments,notes")] Course course)
         {
             if (id != course.CourseID)
@@ -117,6 +123,7 @@ namespace WebBase.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Administrator")]
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
