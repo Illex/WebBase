@@ -52,6 +52,7 @@ namespace WebBase.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+            public string unid { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -102,7 +103,8 @@ namespace WebBase.Areas.Identity.Pages.Account
                 {
                     Input = new InputModel
                     {
-                        Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                        Email = info.Principal.FindFirstValue(ClaimTypes.Email), 
+                        unid = info.Principal.FindFirstValue(ClaimTypes.UserData)
                     };
                 }
                 return Page();
@@ -122,7 +124,7 @@ namespace WebBase.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new TAUser { UserName = Input.Email, Email = Input.Email };
+                var user = new TAUser { UserName = Input.Email, Email = Input.Email, unid = Input.unid };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

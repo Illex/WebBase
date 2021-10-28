@@ -41,8 +41,8 @@ namespace WebBase
                 //options.ClientId = googleAuthNSection["ClientId"];
                 //options.ClientSecret = googleAuthNSection["ClientSecret"];
 
-                //definitley bad code can't get program to read my secrets file for some reason
-               
+                //this is terrible code, don't store passwords, can't get program to read my secrets file for some reason
+
             });
         }
 
