@@ -48,9 +48,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.numEnrollments)
             </th>
+            @if (User.IsInRole("Administrator"))
+            {
             <th>
                 @Html.DisplayNameFor(model => model.notes)
             </th>
+            }
             <th></th>
         </tr>
     </thead>
@@ -93,9 +96,22 @@
             <td>
                 @Html.DisplayFor(modelItem => item.numEnrollments)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.notes)
-            </td>
+            @if (User.IsInRole("Administrator"))
+            {
+                <td>
+                    <textarea id="comments" name="commentBox" cols="25" rows="5">@Html.DisplayFor(modelItem => item.notes)</textarea>
+                </td>
+                <td>
+                    <button id="notesButton" type="button">Submit</button>
+                    <script>
+                        //TODO: fix this to allow administrator to send comment changes to the database
+                        $("#notesButton").click(function () {
+                            alert("hello");
+                            //("comments").hide();
+                        });
+                    </script>
+                </td>
+            }           
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CourseID">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CourseID">Details</a> |
