@@ -46,7 +46,7 @@ namespace WebBase
                 var services = scope.ServiceProvider;
 
                 var context2 = services.GetRequiredService<UsersRolesDB>();
-                UserManager<TAUser> um = services.GetRequiredService<UserManager<TAUser>>();
+                UserManager<URCUser> um = services.GetRequiredService<UserManager<URCUser>>();
                 //dependency injection for this is missing
                 RoleManager<IdentityRole> rm = services.GetRequiredService<RoleManager<IdentityRole>>();
                 await UsersDbInitializer.Initialize(context2, um, rm);

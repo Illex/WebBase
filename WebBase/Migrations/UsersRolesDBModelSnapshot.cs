@@ -154,7 +154,7 @@ namespace WebBase.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("WebBase.Areas.Identity.Data.TAUser", b =>
+            modelBuilder.Entity("WebBase.Areas.Identity.Data.URCUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -230,7 +230,7 @@ namespace WebBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("WebBase.Areas.Identity.Data.TAUser", null)
+                    b.HasOne("WebBase.Areas.Identity.Data.URCUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -239,7 +239,7 @@ namespace WebBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("WebBase.Areas.Identity.Data.TAUser", null)
+                    b.HasOne("WebBase.Areas.Identity.Data.URCUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -254,7 +254,7 @@ namespace WebBase.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("WebBase.Areas.Identity.Data.TAUser", null)
+                    b.HasOne("WebBase.Areas.Identity.Data.URCUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -263,7 +263,7 @@ namespace WebBase.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("WebBase.Areas.Identity.Data.TAUser", null)
+                    b.HasOne("WebBase.Areas.Identity.Data.URCUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -20,14 +20,14 @@ namespace WebBase.Areas.Identity.Pages.Account
     [AllowAnonymous]
     public class ExternalLoginModel : PageModel
     {
-        private readonly SignInManager<TAUser> _signInManager;
-        private readonly UserManager<TAUser> _userManager;
+        private readonly SignInManager<URCUser> _signInManager;
+        private readonly UserManager<URCUser> _userManager;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
 
         public ExternalLoginModel(
-            SignInManager<TAUser> signInManager,
-            UserManager<TAUser> userManager,
+            SignInManager<URCUser> signInManager,
+            UserManager<URCUser> userManager,
             ILogger<ExternalLoginModel> logger,
             IEmailSender emailSender)
         {
@@ -124,7 +124,7 @@ namespace WebBase.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new TAUser { UserName = Input.Email, Email = Input.Email, unid = Input.unid };
+                var user = new URCUser { UserName = Input.Email, Email = Input.Email, unid = Input.unid };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)

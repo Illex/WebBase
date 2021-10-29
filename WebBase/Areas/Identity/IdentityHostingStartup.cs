@@ -21,7 +21,7 @@ namespace WebBase.Areas.Identity
                         context.Configuration.GetConnectionString("UsersRolesDBConnection")));
 
                 //set email confirmation to false?
-                services.AddDefaultIdentity<TAUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<UsersRolesDB>();                
+                services.AddDefaultIdentity<URCUser>(options => options.SignIn.RequireConfirmedAccount = false).AddRoles<IdentityRole>().AddEntityFrameworkStores<UsersRolesDB>();                
 
                 //tells the system to use roles? breaks system
                 //services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true).AddRoles<IdentityRole>();

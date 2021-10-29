@@ -9,7 +9,7 @@ using WebBase.Areas.Identity.Data;
 
 namespace WebBase.Data
 {
-    public class UsersRolesDB : IdentityDbContext<TAUser>
+    public class UsersRolesDB : IdentityDbContext<URCUser>
     {
         public UsersRolesDB(DbContextOptions<UsersRolesDB> options)
             : base(options)
