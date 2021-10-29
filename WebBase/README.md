@@ -8,10 +8,10 @@ Deployed URL: NA
 Github Page: https://github.com/Illex/WebBase.git
 
 Comments to Evaluators:
-	Because of the descrepancy in the naming scheme in the contoso tutorials, there is a small issue that
-	sometimes appears in the _LoginPartial.cshtml.g.cs file where two instances of <TAUser> get renamed to <URCUser>
-	this causes build errors, if this show up during evalueation please rename them back to <TAUser>. double clicking
-	on the error in the error window will take you to the proper location so you can easily make the correction.
+	There is a naming descrepancy due to the instructions for this assignment being incorrect, most of the basic 
+	functionality works, Courses, login authentication, google authentication etc.  Amazon aws still has the 
+	developer mode issue and won't allow google login eventhoug I did the static ip and added the uris with
+	a nip.io address.  all that functionality however works on the local machine.
 
 Assignment Specific Write-up:
 	PS6 uses the authentication and database seeding written in ps5 to function. As a result, since my ps5 was very
