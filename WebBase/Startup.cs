@@ -28,6 +28,7 @@ namespace WebBase
             services.AddDbContext<SchoolContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+
             //throws exception based on developer mode?
             services.AddDatabaseDeveloperPageExceptionFilter();
 
