@@ -4,7 +4,7 @@ Date: 10/28/2021
 Course CS 4540, University of Utah, School of Computing
 Copyright: CS 4540 and Ky Lamoureux - This work may not be copied for use in Academic Coursework.
 
-Deployed URL: NA
+Deployed URL: ec2-18-215-20-74.compute-1.amazonaws.com  (not all local functionality works on aws)
 Github Page: https://github.com/Illex/WebBase.git
 
 Comments to Evaluators:
