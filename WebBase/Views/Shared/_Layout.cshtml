@@ -38,9 +38,20 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Departments" asp-action="Index">Departments</a>
-                        </li> 
+                        </li>
+                        <li class="dropdown">
+                            <a class="nav-link text-dark dropdown-toggle" href="#" id="dropdownMenu" data-toggle="dropdown">TA</a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Ky Lamoureux</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Courses" asp-action="Index">Course List</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Courses" asp-action="Details" asp-route-id="1400">First Course Details</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Courses" asp-action="Edit" asp-route-id="1400">Edit First Course</a>
+                                <a class="dropdown-item" asp-area="" asp-controller="Courses" asp-action="Create">Create Course</a>
+                            </div>
+                        </li>
                         <li class="nav-item">
-                            <partial name="_LoginPartial"/>
+                            <partial name="_LoginPartial" />
                         </li>
                     </ul>
                 </div>

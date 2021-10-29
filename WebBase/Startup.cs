@@ -36,13 +36,14 @@ namespace WebBase
             services.AddAuthentication()
             .AddGoogle(options =>
             {
-                IConfigurationSection googleAuthNSection = Configuration.GetSection("/WebBase/Authentication:Google");
+                IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
 
                 //options.ClientId = googleAuthNSection["ClientId"];
                 //options.ClientSecret = googleAuthNSection["ClientSecret"];
 
                 //this is terrible code, don't store passwords, can't get program to read my secrets file for some reason
-
+                options.ClientId = "557642235098-29s3rq6kih6b30elkmd6srqfr6cc6lcp.apps.googleusercontent.com";
+                options.ClientSecret = "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";
             });
         }
 
