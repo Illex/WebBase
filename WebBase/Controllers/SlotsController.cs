@@ -22,132 +22,65 @@ namespace WebBase.Controllers
         // GET: Slots
         public async Task<IActionResult> Index()
         {
+            //TODO replace with something else?
             return View(await _context.Slots.ToListAsync());
-        }
-
-        // GET: Slots/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var slot = await _context.Slots
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (slot == null)
-            {
-                return NotFound();
-            }
-
-            return View(slot);
-        }
-
-        // GET: Slots/Create
-        public IActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Slots/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        }  
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SlotID,day,time,open")] Slot slot)
+        public async Task<IActionResult> GetSchedule()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(slot);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(slot);
+            //find the current user in the db
+            //get all the slots belonging to that user
+            Student temp = await _context.Students.FindAsync(User);
+            Slot[] slots = temp.Slots.ToArray();
+            
+            
+            //build json from slots
+           // string jsonString = "{{";
+            //foreach (Slot slt in slots)
+            //{
+              //  jsonString += "day:" + " \"" + slt.day + "\""
+                //    + "time:" + " \"" + slt.time + "\""
+                  //  + "open:" + " \"" + slt.open + "\"},";
+            //}
+            //jsonString += "}";            
+
+            //return some json from the database
+            //return Content(jsonString);
+
+            //might be a fast easy way to do all the above
+            return Content (Json(slots).ToString());
+
         }
 
-        // GET: Slots/Edit/5
-        public async Task<IActionResult> Edit(string id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
 
-            var slot = await _context.Slots.FindAsync(id);
-            if (slot == null)
-            {
-                return NotFound();
-            }
-            return View(slot);
-        }
-
-        // POST: Slots/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SlotID,day,time,open")] Slot slot)
+        public async Task<IActionResult> SetSchedule()
         {
-            if (id != slot.ID)
-            {
-                return NotFound();
-            }
+            //find the current user in the db
+            //get all the slots belonging to that user
+            Student temp = await _context.Students.FindAsync(User);
+            Slot[] slots = temp.Slots.ToArray();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(slot);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SlotExists(slot.ID))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(slot);
-        }
 
-        // GET: Slots/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
+            //build json from slots
+            // string jsonString = "{{";
+            //foreach (Slot slt in slots)
+            //{
+            //  jsonString += "day:" + " \"" + slt.day + "\""
+            //    + "time:" + " \"" + slt.time + "\""
+            //  + "open:" + " \"" + slt.open + "\"},";
+            //}
+            //jsonString += "}";            
 
-            var slot = await _context.Slots
-                .FirstOrDefaultAsync(m => m.ID == id);
-            if (slot == null)
-            {
-                return NotFound();
-            }
+            //return some json from the database
+            //return Content(jsonString);
 
-            return View(slot);
-        }
+            //might be a fast easy way to do all the above
+            return Content(Json(slots).ToString());
 
-        // POST: Slots/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(string id)
-        {
-            var slot = await _context.Slots.FindAsync(id);
-            _context.Slots.Remove(slot);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool SlotExists(int id)
-        {
-            return _context.Slots.Any(e => e.ID == id);
         }
     }
 }

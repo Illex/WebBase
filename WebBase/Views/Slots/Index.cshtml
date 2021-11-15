@@ -6,6 +6,19 @@
 
 <h1>Index</h1>
 
+<!--TODO: update this to fit the new specified view-->
+<!--AJAX template
+    
+    $.ajax({
+        url: 'atSymbolUrl.Action("methodName", "comment header?")',
+        content : "the content needed",
+        dataType : "json",
+        success: successFunciton,
+        error : errorfunction
+    });
+    -->
+
+
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -25,23 +38,20 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.day)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.time)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.open)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.day)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.time)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.open)
+                </td>
+
+            </tr>
+        }
     </tbody>
 </table>
