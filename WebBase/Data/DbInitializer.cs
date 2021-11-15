@@ -1,5 +1,6 @@
 ﻿using ContosoUniversity.Models;
 using System;
+using System.Collections;
 using System.Linq;
 
 namespace ContosoUniversity.Data
@@ -16,7 +17,7 @@ namespace ContosoUniversity.Data
                 return;   // DB has been seeded
             }
 
-        var students = new Student[]
+            var students = new Student[]
             {
             new Student{uid="u0000000", FirstMidName="Carson",LastName="Alexander", phoneNumber="000-000-0000", currentDegree="BS", currentProgram="CS", gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
             new Student{uid="u0000001", FirstMidName="Meredith",LastName="Alonso", phoneNumber="000-000-0001", currentDegree="BS", currentProgram="CS" , gpa=4.0f, numHours=2, personalStatement="life sucks", fluency='f', completedSemesters=4, linkedin="nothing", resume="none", creationDate=System.DateTime.Now, modificatonDate=System.DateTime.Now},
@@ -33,7 +34,7 @@ namespace ContosoUniversity.Data
             }
             context.SaveChanges();
 
-        var courses = new Course[]
+            var courses = new Course[]
             {
             new Course{CourseID="1400", semesters="Spring", title="Chemistry", year=2022, department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes="This class is very hard."},
             new Course{CourseID="1500", semesters="Spring", title="Microeconomics", year=2022,  department="CS", section="001", description="liberal propoganda", professorUNID = "u1111111", professorName="Jonald Jorts", ClassTimes="M/W 3:30-5:00", location="MEB 1000", Credits=3, numEnrollments=12, notes=""},
@@ -69,6 +70,56 @@ namespace ContosoUniversity.Data
                 context.Enrollments.Add(e);
             }
             context.SaveChanges();
+
+            //TODO: add availability seeding?
+            ArrayList slots = new ArrayList();
+
+            //need to make id manually for some reason?
+            int id = 0;
+            
+            for(int i = 0; i < 48; i++)
+            {
+                slots.Add(new Slot {ID=id, day = "Monday", open = false, time = i });
+                id++;
+                slots.Add(new Slot {ID=id, day = "Monday", open = true, time = i });
+                id++;
+            }
+            for (int i = 0; i < 48; i++)
+            {
+                slots.Add(new Slot { ID = id, day = "Tuesday", open = false, time = i });
+                id++;
+                slots.Add(new Slot { ID = id, day = "Tuesday", open = true, time = i });
+                id++;
+            }
+            for (int i = 0; i < 48; i++)
+            {
+                slots.Add(new Slot { ID = id, day = "Wednesday", open = false, time = i });
+                id++;
+                slots.Add(new Slot { ID = id, day = "Wednesday", open = true, time = i });
+                id++;
+            }
+            for (int i = 0; i < 48; i++)
+            {
+                slots.Add(new Slot { ID = id, day = "Thursday", open = false, time = i });
+                id++;
+                slots.Add(new Slot { ID = id, day = "Thursday", open = true, time = i });
+                id++;
+            }
+            for (int i = 0; i < 48; i++)
+            {
+                slots.Add(new Slot { ID = id, day = "Friday", open = false, time = i });
+                id++;
+                slots.Add(new Slot { ID = id, day = "Friday", open = true, time = i });
+                id++;
+            }
+
+            foreach (Slot item in slots)
+            {
+                context.Slots.Add(item);
+            }
+
+            context.SaveChanges();
+
         }
     }
 }

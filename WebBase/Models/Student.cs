@@ -26,5 +26,8 @@ namespace ContosoUniversity.Models
 
 
         public ICollection<Enrollment> Enrollments { get; set; }
+
+        //one student can have any number of availability slots
+        public ICollection<Slot> Slots{ get; set; }
     }
 }
