@@ -45,3 +45,12 @@
 <div>
     <!--put button here that calls set schedule via ajax-->
 </div>
+<script>    
+    $.ajax({        
+        url: '@Url.Action("GetSchedule", "SlotsController")',
+        
+        success: function (data) { alert("got message back") },
+        
+        dataType: JSON
+    });
+</script>
