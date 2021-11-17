@@ -11,8 +11,6 @@ namespace ContosoUniversity.Models
 
         public string day { get; set; }
 
-        public int time { get; set; }
-
-        public bool open { get; set; }       
+        public int time { get; set; }       
     }
 }

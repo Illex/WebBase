@@ -77,39 +77,29 @@ namespace ContosoUniversity.Data
             //need to make id manually for some reason?
             int id = 0;
             
-            for(int i = 0; i < 48; i++)
+            for(int i = 0; i < 24; i++)
             {
-                slots.Add(new Slot {ID=id, day = "Monday", open = false, time = i });
-                id++;
-                slots.Add(new Slot {ID=id, day = "Monday", open = true, time = i });
+                slots.Add(new Slot {ID=id, day = "Monday", time = i });
                 id++;
             }
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < 24; i++)
             {
-                slots.Add(new Slot { ID = id, day = "Tuesday", open = false, time = i });
-                id++;
-                slots.Add(new Slot { ID = id, day = "Tuesday", open = true, time = i });
+                slots.Add(new Slot { ID = id, day = "Tuesday", time = i });
                 id++;
             }
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < 24; i++)
             {
-                slots.Add(new Slot { ID = id, day = "Wednesday", open = false, time = i });
-                id++;
-                slots.Add(new Slot { ID = id, day = "Wednesday", open = true, time = i });
+                slots.Add(new Slot { ID = id, day = "Wednesday", time = i });
                 id++;
             }
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < 24; i++)
             {
-                slots.Add(new Slot { ID = id, day = "Thursday", open = false, time = i });
-                id++;
-                slots.Add(new Slot { ID = id, day = "Thursday", open = true, time = i });
+                slots.Add(new Slot { ID = id, day = "Thursday", time = i });
                 id++;
             }
-            for (int i = 0; i < 48; i++)
+            for (int i = 0; i < 24; i++)
             {
-                slots.Add(new Slot { ID = id, day = "Friday", open = false, time = i });
-                id++;
-                slots.Add(new Slot { ID = id, day = "Friday", open = true, time = i });
+                slots.Add(new Slot { ID = id, day = "Friday", time = i });
                 id++;
             }
 

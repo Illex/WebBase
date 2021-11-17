@@ -15,6 +15,7 @@ namespace WebBase.Controllers
     public class CoursesController : Controller
     {
         private readonly SchoolContext _context;
+        
 
         public CoursesController(SchoolContext context)
         {
