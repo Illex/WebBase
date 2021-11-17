@@ -36,16 +36,23 @@
         hiring committee and professors to determine class coverage, lab coverage, office our coverage, etc.<br />
         (Note: Any work necessary on the weekends will be up to you and your professor to negotiate.)<br />
         <br />
-        If you schedule changes, please come back and updabe this record
+        If you schedule changes, please come back and update this record
     </p>
 </div>
-<div id="availabilit-table">
+<div id="availability-table">
 
 </div>
 <div>
     <!--put button here that calls set schedule via ajax-->
 </div>
+<!-- add pixi cdn-->
+
 <script>    
+    //TODO: move this below the get function after it works so the canvas can be drawn correctly
+    $(document).ready(function () {
+        setScreen();
+    })
+
     $.ajax({        
         url: '@Url.Action("GetSchedule", "SlotsController")',
         
