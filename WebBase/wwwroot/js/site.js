@@ -12,73 +12,51 @@ function setScreen() {
     });
 
     //create a place to store all the things on screen
-    const graphics = new PIXI.Graphics();
-
+    const background = new PIXI.Graphics();
     //background color
-    graphics.beginFill(0x1099bb);
-    graphics.drawRect(0, 0, 820, 745);
-    graphics.endFill();
-    
-    for (i = 0; i < 5; i++) {
-        //top row white out
-        graphics.beginFill(0xFFFFFF);
-        graphics.drawRect(160 * i + 15, 0, 150, 10);
-        graphics.endFill();
+    background.beginFill(0x000000);
+    background.drawRoundedRect(0, 0, 820, 745);
+    background.endFill();
+    app.stage.addChild(background);
 
-        //bottom row white out
-        graphics.beginFill(0xFFFFFF);
-        graphics.drawRect(160 * i + 15, 735, 150, 10);
-        graphics.endFill();
+    let graphicObjects = new Array();
+    for (i = 0; i < 5; i++) {       
         for (j = 0; j < 48; j++) {
-            graphics.beginFill(0x000000);
-            graphics.drawRect(160 * i + 15, 15 * j + 15, 150, 10);
-            graphics.endFill();
+            temp = new PIXI.Graphics();
+            temp.beginFill(0x1099bb);
+            temp.drawRoundedRect(160 * i + 15, 15 * j + 15, 150, 10);
+            temp.interactive = true;
+            temp.buttonMode = true;
+            temp.on("click", onClick);
+            temp.endFill();
+            graphicObjects.push(temp);
 
             //add a highlight line for each hour
             if (j % 4 == 0) {
-                graphics.beginFill(0xad0909);
-                graphics.drawRect(160 * i, 15 * j + 10, 180, 5);
-                graphics.endFill();
-            }
-
-            //far left white out
-            graphics.beginFill(0xFFFFFF);
-            graphics.drawRect(0 , 15 * j + 15, 10, 10);
-            graphics.endFill();
-            //far right white out
-            graphics.beginFill(0xFFFFFF);
-            graphics.drawRect(810, 15 * j + 15, 820, 10);
-            graphics.endFill();
+                line = new PIXI.Graphics();
+                line.beginFill(0xFFFFFF);
+                line.drawRect(160 * i, 15 * j + 12, 180, 2);
+                line.endFill();
+                graphicObjects.push(line);
+            }    
         }        
     }
 
     //extra highlight line on botton
-    graphics.beginFill(0xad0909);
+    line = new PIXI.Graphics();
+    line.beginFill(0xFFFFFF);
     // magic numbers bad
-    graphics.drawRect(0, 730, 820, 5);
-    graphics.endFill();
+    line.drawRect(0, 732, 820, 2);
+    line.endFill();
+    graphicObjects.push(line);
 
-    //four corners white out
-    graphics.beginFill(0xFFFFFF);
-    graphics.drawRect(0, 0, 10, 10);
-    graphics.endFill();
-
-    graphics.beginFill(0xFFFFFF);
-    graphics.drawRect(810, 0, 10, 10);
-    graphics.endFill();
-
-    graphics.beginFill(0xFFFFFF);
-    graphics.drawRect(0, 735, 10, 10);
-    graphics.endFill();
-
-    graphics.beginFill(0xFFFFFF);
-    graphics.drawRect(810, 735, 10, 10);
-    graphics.endFill();
+    graphicObjects.forEach(function (element) { app.stage.addChild(element) });
 
     //draw text
-    const style = new PIXI.TextStyle({
+    style = new PIXI.TextStyle({
         fontFamily: 'Arial',
-        fontSize: 10,       
+        fontSize: 10,
+        fill: ['0xffffff']
         //strokeThickness: 2,
      });
     const Monday = new PIXI.Text('Monday',style);
@@ -100,15 +78,20 @@ function setScreen() {
     const Friday = new PIXI.Text('Friday', style);
     Friday.x = 710;
     Friday.y = 0;
-
-
     
-    app.stage.addChild(graphics);
+    //app.stage.addChild(graphics);
     app.stage.addChild(Monday);
     app.stage.addChild(Tuesday);
     app.stage.addChild(Wednesday);
     app.stage.addChild(Thursday);
     app.stage.addChild(Friday);
+
+    style = new PIXI.TextStyle({
+        fontFamily: 'Arial',
+        fontSize: 10,
+        fill: ['0c000000']
+        //strokeThickness: 2,
+    });
 
     for (i = 0; i <= 12; i++) {
         t = (i + 8) % 12;
@@ -127,6 +110,12 @@ function setScreen() {
         app.stage.addChild(time);
     }
 
+    function onClick() {
+        //do highlighting stuff
+        //this.tint(0xFFFFFF);
+        console.log(this.getLocalBounds());
+        
+    }
     
 
     //const line = new PIXI.line()
