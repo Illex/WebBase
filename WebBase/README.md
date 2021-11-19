@@ -33,4 +33,13 @@ Peers Consulted:
 Acknowledgements:
 
 References:	
+
+
+    $.ajax({
+        url: '@Url.Action("GetSchedule", "SlotsController")',
+
+        success: function (data) { alert("got message back") },
+
+        dataType: JSON
+    });
 	

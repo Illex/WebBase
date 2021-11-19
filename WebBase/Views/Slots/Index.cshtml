@@ -4,7 +4,7 @@
     ViewData["Title"] = "Index";
 }
 
-@{ 
+@{
 
     var name = "none";
     for (int i = 0; i < ViewBag.length; i++)
@@ -14,23 +14,13 @@
             name = ViewBag.students[i].FirstMidName + " " + ViewBag.students[i].LastName;
             break;
         }
-    }    
+    }
 }
 <h1>Availability for @name</h1>
 
-<!--TODO: update this to fit the new specified view-->
-<!--AJAX template
-
-    $.ajax({
-        url: 'atSymbolUrl.Action("methodName", "comment header?")',
-        content : "the content needed",
-        dataType : "json",
-        success: successFunciton,
-        error : errorfunction
-    });
-    -->
 
 <div id="availabilty-header">
+    
     <p>
         Please indicate all times that you <b>will be</b> available during the week. This information is used by the <br />
         hiring committee and professors to determine class coverage, lab coverage, office our coverage, etc.<br />
@@ -40,25 +30,23 @@
     </p>
 </div>
 <div id="availability-table">
-
+    <!--set screen puts a PIXI app in this div-->
+    <div class="loader" id="spinner" hidden></div>
 </div>
+
 <div>
+    <button type="button" id="saveButton" class="btn btn-primary" onclick="saveClick()">Save</button> <p style="color:red" hidden="true" id="saveNotify">There are unsaved changes</p>
     <!--put button here that calls set schedule via ajax-->
 </div>
-<!-- add pixi cdn-->
 
-<script>    
+
+<script>
+
     //TODO: move this below the get function after it works so the canvas can be drawn correctly
     $(document).ready(function () {
         setScreen();
     })
 
-    $.ajax({        
-        url: '@Url.Action("GetSchedule", "SlotsController")',
-        
-        success: function (data) { alert("got message back") },
-        
-        dataType: JSON
-    });
+
 
 </script>

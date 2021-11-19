@@ -3,12 +3,21 @@
 
 // Write your JavaScript code.
 
+//array is temporary, will be populated with availability data
+var timeSlots = [[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false]];
+
+var app;
 
 function setScreen() {    
-    
-    const app = new PIXI.Application({
-        width: 900, height: 860, backgroundColor: 0xFFFFFF, resolution: window.devicePixelRatio || 1,
+
+    app = new PIXI.Application({
+        width: 900, height: 750, backgroundColor: 0xFFFFFF, resolution: window.devicePixelRatio || 1,
     });
+
 
     //create a place to store all the things on screen
     const background = new PIXI.Graphics();
@@ -19,12 +28,7 @@ function setScreen() {
     app.stage.addChild(background);
 
     let graphicObjects = new Array();
-    let timeSlots = [[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
-                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false], 
-                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
-                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
-                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false]];
-
+    
     for (i = 0; i < 5; i++) {       
         for (j = 0; j < 48; j++) {
 
@@ -122,37 +126,49 @@ function setScreen() {
         app.stage.addChild(time);
     }
 
-    function onClick() {
-        //do highlighting stuff
-        //this.tint(0xFFFFFF);
-        console.log(this.getLocalBounds());
-        let bounds = this.getLocalBounds();        
-
-        const newRect = new PIXI.Graphics();
-
-        //TODO: store active time slots in an array
-
-        //if the array at (x - 15)/160 , (y -15)/15
-        indexI = (bounds.x - 15) / 160;
-        indexJ = (bounds.y - 15) / 15;
-        if (timeSlots[indexI][indexJ] == true) {
-            //set to false
-            timeSlots[indexI][indexJ] = false;
-            newRect.beginFill(0x1099bb);
-        }
-        else {
-            //set to true
-            timeSlots[indexI][indexJ] = true;
-            newRect.beginFill(0xFFFFFF);
-        }        
-        newRect.drawRoundedRect(bounds.x, bounds.y, 150, 10);
-        newRect.endFill();
-        app.stage.addChild(newRect);        
-    }
-    
-
-    //const line = new PIXI.line()
     //select the proper html element and place the pixi object inside of it.
     document.getElementById("availability-table").appendChild(app.view);
     
+}
+
+function onClick() {
+    //do highlighting stuff        
+    console.log(this.getLocalBounds());
+    let bounds = this.getLocalBounds();
+    const newRect = new PIXI.Graphics();
+
+    document.getElementById('saveNotify').hidden = false;
+    //document.getElementById(id);
+
+    //undo the above math to find the array index
+    //if the array at (x - 15)/160 , (y -15)/15
+    indexI = (bounds.x - 15) / 160;
+    indexJ = (bounds.y - 15) / 15;
+    if (timeSlots[indexI][indexJ] == true) {
+        //set to false
+        timeSlots[indexI][indexJ] = false;
+        newRect.beginFill(0x1099bb);
+    }
+    else {
+        //set to true
+        timeSlots[indexI][indexJ] = true;
+        newRect.beginFill(0xFFFFFF);
+    }
+    newRect.drawRoundedRect(bounds.x, bounds.y, 150, 10);
+    newRect.endFill();
+    app.stage.addChild(newRect);
+}
+
+function saveClick() {
+    //TODO: find a way to send info back to the server
+    console.log("changes saved");
+    document.getElementById('saveNotify').hidden = true;   
+    document.getElementById('spinner').hidden = false;
+    setTimeout(myFunction, 3000);  
+}    
+
+//TODO: remove this and replace it when data is moving between the view and the server properly
+function myFunction() {
+    document.getElementById('spinner').hidden = true;
+
 }
