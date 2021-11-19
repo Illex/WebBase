@@ -20,7 +20,7 @@
 
 
 <div id="availabilty-header">
-    
+
     <p>
         Please indicate all times that you <b>will be</b> available during the week. This information is used by the <br />
         hiring committee and professors to determine class coverage, lab coverage, office our coverage, etc.<br />
@@ -39,8 +39,9 @@
     <!--put button here that calls set schedule via ajax-->
 </div>
 
-
+<script src="~/js/other.js"></script>
 <script>
+    callGetSchedule();
 
     //TODO: move this below the get function after it works so the canvas can be drawn correctly
     $(document).ready(function () {

@@ -44,6 +44,7 @@ function setScreen() {
             temp.interactive = true;
             temp.buttonMode = true;
             temp.on("click", onClick);
+            //temp.on("mousedown", onClick);
             temp.endFill();
             graphicObjects.push(temp);
 
@@ -132,7 +133,7 @@ function setScreen() {
 }
 
 function onClick() {
-    //do highlighting stuff        
+    //do highlighting stuff    
     console.log(this.getLocalBounds());
     let bounds = this.getLocalBounds();
     const newRect = new PIXI.Graphics();

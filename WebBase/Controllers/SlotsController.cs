@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebBase.Controllers
 {
+    [Authorize]
     public class SlotsController : Controller
     {
         private SchoolContext _context;
@@ -34,23 +36,23 @@ namespace WebBase.Controllers
             return View(await _context.Slots.ToListAsync());
         }  
         
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
+        [Authorize(Roles = "Applicant")]        
         public async Task<IActionResult> GetSchedule()
         {
             //find the current user in the db
             //get all the slots belonging to that user
             Student temp = await _context.Students.FindAsync(User);
-            Slot[] slots = temp.Slots.ToArray();
-            
-            
+            string[] slots = { "some Data" };//temp.Slots.ToArray();
+
+
             //build json from slots
-           // string jsonString = "{{";
+            // string jsonString = "{{";
             //foreach (Slot slt in slots)
             //{
-              //  jsonString += "day:" + " \"" + slt.day + "\""
-                //    + "time:" + " \"" + slt.time + "\""
-                  //  + "open:" + " \"" + slt.open + "\"},";
+            //  jsonString += "day:" + " \"" + slt.day + "\""
+            //    + "time:" + " \"" + slt.time + "\""
+            //  + "open:" + " \"" + slt.open + "\"},";
             //}
             //jsonString += "}";            
 
@@ -58,9 +60,8 @@ namespace WebBase.Controllers
             //return Content(jsonString);
 
             //might be a fast easy way to do all the above
+            //return slots;
             return Content (Json(slots).ToString());
-            
-
         }
 
 
