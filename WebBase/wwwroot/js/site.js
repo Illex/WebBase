@@ -4,8 +4,7 @@
 // Write your JavaScript code.
 
 
-function setScreen() {
-    //TODO: get something with graphics acceleration, otherwise development on this won't work
+function setScreen() {    
     
     const app = new PIXI.Application({
         width: 900, height: 860, backgroundColor: 0xFFFFFF, resolution: window.devicePixelRatio || 1,
@@ -20,10 +19,23 @@ function setScreen() {
     app.stage.addChild(background);
 
     let graphicObjects = new Array();
+    let timeSlots = [[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false], 
+                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
+                     [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false]];
+
     for (i = 0; i < 5; i++) {       
         for (j = 0; j < 48; j++) {
+
+
             temp = new PIXI.Graphics();
-            temp.beginFill(0x1099bb);
+            if (timeSlots[i][j] == true) {                
+                temp.beginFill(0xFFFFFF);
+            }
+            else {
+                temp.beginFill(0x1099bb);
+            }            
             temp.drawRoundedRect(160 * i + 15, 15 * j + 15, 150, 10);
             temp.interactive = true;
             temp.buttonMode = true;
@@ -33,7 +45,7 @@ function setScreen() {
 
             //add a highlight line for each hour
             if (j % 4 == 0) {
-                line = new PIXI.Graphics();
+                line = new PIXI.Graphics();                
                 line.beginFill(0xFFFFFF);
                 line.drawRect(160 * i, 15 * j + 12, 180, 2);
                 line.endFill();
@@ -114,7 +126,28 @@ function setScreen() {
         //do highlighting stuff
         //this.tint(0xFFFFFF);
         console.log(this.getLocalBounds());
-        
+        let bounds = this.getLocalBounds();        
+
+        const newRect = new PIXI.Graphics();
+
+        //TODO: store active time slots in an array
+
+        //if the array at (x - 15)/160 , (y -15)/15
+        indexI = (bounds.x - 15) / 160;
+        indexJ = (bounds.y - 15) / 15;
+        if (timeSlots[indexI][indexJ] == true) {
+            //set to false
+            timeSlots[indexI][indexJ] = false;
+            newRect.beginFill(0x1099bb);
+        }
+        else {
+            //set to true
+            timeSlots[indexI][indexJ] = true;
+            newRect.beginFill(0xFFFFFF);
+        }        
+        newRect.drawRoundedRect(bounds.x, bounds.y, 150, 10);
+        newRect.endFill();
+        app.stage.addChild(newRect);        
     }
     
 

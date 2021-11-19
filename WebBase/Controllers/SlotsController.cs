@@ -59,6 +59,7 @@ namespace WebBase.Controllers
 
             //might be a fast easy way to do all the above
             return Content (Json(slots).ToString());
+            
 
         }
 
