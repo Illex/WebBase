@@ -110,6 +110,8 @@ namespace ContosoUniversity.Data
 
             context.SaveChanges();
 
+            //TODO: add an enrollment seeding function
+
         }
     }
 }
