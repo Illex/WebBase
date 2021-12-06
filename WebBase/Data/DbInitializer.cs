@@ -110,8 +110,22 @@ namespace ContosoUniversity.Data
 
             context.SaveChanges();
 
-            //TODO: add an enrollment seeding function
+            //TODO: find a way to make this the relative filepath
+            string[] lines = System.IO.File.ReadAllLines("C:\\Users\\micron\\source\\repos\\WebBase\\WebBase\\wwwroot\\resources\\temp.csv");
 
+            //parse the file contents as a csv, assume file is formatted properly
+            int someId = 0;
+            for (int j = 1; j < lines.Length; j++)
+            {
+                string[] cells = lines[j].Split(',');
+                string cls = cells[0];
+                for (int i = 1; i < cells.Length; i++)
+                {
+                    context.Hists.Add(new EnrollmentHist {EnrollmentHistID=someId.ToString(), course = cls, enrollments=Int32.Parse(cells[i]), date="Nov " + i });
+                    someId++;
+                }
+            }
+            context.SaveChanges();
         }
     }
 }
