@@ -86,11 +86,53 @@
         <option value="CS4530">CS 4530</option>
     </select>
     <br>
-    <button type="button" id="chartButton" class="btn btn-primary" onclick="buildChart()">Get Data</button>
+    <button type="button" id="chartButton" class="btn btn-primary" onclick="buildChart()" >Get Data</button>
 </div>
-<div id="enrollment-chart">
-    <!--a place to put the chart after calling the js function-->
-</div>
-<div id="dom-data">
+    <!--taken directly from the high chats web demo site-->
+    <!--https://www.highcharts.com/demo/line-basic-->
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    <p class="highcharts-description">
+        Basic line chart showing trends in a dataset. This chart includes the
+        <code>series-label</code> module, which adds a label to each line for
+        enhanced readability.
+    </p>
+</figure>
+
+
+<!--not the best design, often used with other data visualization libraries, D3 for example-->
+<!--TODO: find a way to dynamicall update this?-->
+<div id="dom-data" hidden>
+    <table class="table" id="dom-data-table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.course)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.enrollments)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>                
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.course)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.enrollments)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>                   
+                </tr>
+            }
+        </tbody>
+    </table>
     <!--a place to put the required data-->
 </div>

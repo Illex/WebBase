@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
+using System.Diagnostics;
 
 namespace WebBase
 {
@@ -21,7 +22,7 @@ namespace WebBase
 
         // GET: EnrollmentHists
         public async Task<IActionResult> Index()
-        {
+        {                    
             return View(await _context.Hists.ToListAsync());
         }
 
