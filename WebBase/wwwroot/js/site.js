@@ -2,7 +2,22 @@
 // for details on configuring this project to bundle and minify static web assets.
 
 // Write your JavaScript code.
-
+/**
+ * Author: Ky lamoureux
+ * Partner: N/A
+ * Date: 12/8/2021
+ * Course: CS 4540, University of Utah, School of Computing
+ * Copyright: CS 4540 and Ky Lamoureux - This wor may not be copied for use in Acedemic Coursework.
+ * 
+ * I, Ky Lamoureux, certify that I wrote this code from scratch and did
+ * not copy it in part or in whole from aanother source. Any references used
+ * in the completion of the assignment are cited in my EADME file and in
+ * the appropriate method header.
+ * 
+ * File Contents
+ *      Many of the functions required to dynamically create figures and
+ *      elements for the page are located in this file. 
+ * */
 //array is temporary, will be populated with availability data
 var timeSlots = [[true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
 [true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, true, true, true, true, true, true, true, true, true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false],
@@ -171,10 +186,10 @@ function saveClick() {
 //TODO: remove this and replace it when data is moving between the view and the server properly
 function myFunction() {
     document.getElementById('spinner').hidden = true;
-
 }
 
-function buildChart() {
+function buildChart() {   
+    
     console.log("building chart");
 
     //scrape the relevant data from the dom
@@ -215,15 +230,20 @@ function buildChart() {
         }
     }
 
-    //console.log(classData);
-
+//    document.getElementById('spinner').hidden = true;
+    
     myChart.addSeries({
         name: classTag,
         data: classData
     }, false)
 
     myChart.redraw();
+
 }
+
+
+//Code directly referenced from the high charts example code 
+//https://www.highcharts.com/demo/line-basic
 
 let myChart = Highcharts.chart('container', {
 

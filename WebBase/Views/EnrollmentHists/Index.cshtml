@@ -88,6 +88,7 @@
     <br>
     <button type="button" id="chartButton" class="btn btn-primary" onclick="buildChart()" >Get Data</button>
 </div>
+
     <!--taken directly from the high chats web demo site-->
     <!--https://www.highcharts.com/demo/line-basic-->
 <figure class="highcharts-figure">
@@ -98,7 +99,7 @@
         enhanced readability.
     </p>
 </figure>
-
+<div class="loader" id="spinner" hidden></div>
 
 <!--not the best design, often used with other data visualization libraries, D3 for example-->
 <!--TODO: find a way to dynamicall update this?-->

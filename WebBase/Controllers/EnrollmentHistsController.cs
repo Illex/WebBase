@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore;
 using ContosoUniversity.Data;
 using ContosoUniversity.Models;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebBase
 {
+    [Authorize]
     public class EnrollmentHistsController : Controller
     {
         private readonly SchoolContext _context;
@@ -21,12 +23,15 @@ namespace WebBase
         }
 
         // GET: EnrollmentHists
+        [Authorize(Roles = "Administrator, Professor")]
         public async Task<IActionResult> Index()
         {                    
             return View(await _context.Hists.ToListAsync());
         }
 
         // GET: EnrollmentHists/Details/5
+
+        //not used
         public async Task<IActionResult> Details(string id)
         {
             if (id == null)
@@ -45,6 +50,7 @@ namespace WebBase
         }
 
         // GET: EnrollmentHists/Create
+        //not used
         public IActionResult Create()
         {
             return View();
@@ -53,6 +59,7 @@ namespace WebBase
         // POST: EnrollmentHists/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //not used
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("EnrollmentHistID,course,date,enrollments")] EnrollmentHist enrollmentHist)
@@ -67,6 +74,7 @@ namespace WebBase
         }
 
         // GET: EnrollmentHists/Edit/5
+        //not used
         public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
@@ -85,6 +93,7 @@ namespace WebBase
         // POST: EnrollmentHists/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        //not used
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(string id, [Bind("EnrollmentHistID,course,date,enrollments")] EnrollmentHist enrollmentHist)
@@ -118,6 +127,7 @@ namespace WebBase
         }
 
         // GET: EnrollmentHists/Delete/5
+        //not used
         public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
@@ -136,6 +146,7 @@ namespace WebBase
         }
 
         // POST: EnrollmentHists/Delete/5
+        //not used
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(string id)
