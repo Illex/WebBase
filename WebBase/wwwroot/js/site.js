@@ -176,27 +176,65 @@ function myFunction() {
 
 function buildChart() {
     console.log("building chart");
+
+    //scrape the relevant data from the dom
+    
+    let table = document.getElementById("table-body").innerHTML;   
+   
+    let classTag = document.getElementById("class-select").value;    
+    let startDate = document.getElementById("start-date-select").value;    
+    let endDate = document.getElementById("End-date-select").value; 
+    
+    //if the chart alreaady has a slot for that class, append data for that sereis
+    //else make a new series for that class in that range
+
+    //a place to store the relevant dom elements
+    let tableData = table.split('<tr>');
+    let classData = [];
+   // for (i = 1; i < tableData.length; i++) {
+        
+        //console.log(tableData[i].split("</tr>")[0]);
+        
+    //}
+
+    for (i = 1; i < tableData.length; i++) {
+        let cls = tableData[i].split("<td>")[1].split("</td>")[0].trim()
+       // console.log(cls);
+        let enr = tableData[i].split("<td>")[2].split("</td>")[0].trim()
+        let dat = tableData[i].split("<td>")[3].split("</td>")[0].trim()
+        //console.log(dat);
+
+        if (cls == classTag) {
+           //if date is in range
+            let num = dat.split(' ')[1];
+            if (num >= startDate && num <= endDate) {
+                console.log("pushing: " + enr)
+                classData.push(parseInt(enr));
+            }
+            
+            //add enrollment value to data array
+        }
+    }
+
+    //console.log(classData);
+
+    myChart.addSeries({
+        name: classTag,
+        data: classData
+    }, false)
+
+    myChart.redraw();
 }
 
-Highcharts.chart('container', {
+let myChart = Highcharts.chart('container', {
 
     title: {
-        text: 'Solar Employment Growth by Sector, 2010-2016'
-    },
-
-    subtitle: {
-        text: 'Source: thesolarfoundation.com'
+        text: 'Enrollments Over Time For November'
     },
 
     yAxis: {
         title: {
-            text: 'Number of Employees'
-        }
-    },
-
-    xAxis: {
-        accessibility: {
-            rangeDescription: 'Range: 2010 to 2017'
+            text: 'Number of Enrollments'
         }
     },
 
@@ -211,26 +249,11 @@ Highcharts.chart('container', {
             label: {
                 connectorAllowed: false
             },
-            pointStart: 2010
+            pointStart: 1
         }
     },
 
-    series: [{
-        name: 'Installation',
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
-    }, {
-        name: 'Manufacturing',
-        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
-    }, {
-        name: 'Sales & Distribution',
-        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
-    }, {
-        name: 'Project Development',
-        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
-    }, {
-        name: 'Other',
-        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
-    }],
+    series: [],
 
     responsive: {
         rules: [{
