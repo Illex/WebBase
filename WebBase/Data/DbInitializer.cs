@@ -1,6 +1,7 @@
 ﻿using ContosoUniversity.Models;
 using System;
 using System.Collections;
+using System.Diagnostics;
 using System.Linq;
 
 namespace ContosoUniversity.Data
@@ -111,7 +112,14 @@ namespace ContosoUniversity.Data
             context.SaveChanges();
 
             //TODO: find a way to make this the relative filepath
-            string[] lines = System.IO.File.ReadAllLines("C:\\Users\\micron\\source\\repos\\WebBase\\WebBase\\wwwroot\\resources\\temp.csv");
+            //string[] lines = System.IO.File.ReadAllLines("C:\\Users\\micron\\source\\repos\\WebBase\\WebBase\\wwwroot\\resources\\temp.csv");
+            //make reading of csv file dynamic
+            string[] lines = System.IO.File.ReadAllLines(Environment.CurrentDirectory + "\\wwwroot\\resources\\temp.csv");
+            //combine path to make sure it works on all machines
+            //Debug.WriteLine("writing path line #################################################################################################################");
+           // Debug.WriteLine("are the paths equal?");
+           // Debug.WriteLine(System.IO.Path.Combine(Environment.CurrentDirectory + "\\wwwroot\\resources\\temp.csv").Equals("C:\\Users\\micron\\source\\repos\\WebBase\\WebBase\\wwwroot\\resources\\temp.csv"));
+            //string[] lines = System.IO.File.ReadAllLines(System.IO.Path.Combine(Environment.CurrentDirectory, "\\wwwroot\\resources\\temp.csv"));
 
             //parse the file contents as a csv, assume file is formatted properly
             int someId = 0;

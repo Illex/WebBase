@@ -191,11 +191,11 @@ function buildChart() {
     //a place to store the relevant dom elements
     let tableData = table.split('<tr>');
     let classData = [];
-   // for (i = 1; i < tableData.length; i++) {
-        
-        //console.log(tableData[i].split("</tr>")[0]);
-        
-    //}
+
+    //seed class data
+    for (i = 0; i < 30; i++) {
+        classData.push(null);
+    }
 
     for (i = 1; i < tableData.length; i++) {
         let cls = tableData[i].split("<td>")[1].split("</td>")[0].trim()
@@ -206,13 +206,12 @@ function buildChart() {
 
         if (cls == classTag) {
            //if date is in range
-            let num = dat.split(' ')[1];
+            let num = parseInt(dat.split(' ')[1]);            
             if (num >= startDate && num <= endDate) {
-                console.log("pushing: " + enr)
-                classData.push(parseInt(enr));
-            }
             
-            //add enrollment value to data array
+                console.log("pushing: " + enr)
+                classData[num] = (parseInt(enr));
+            }
         }
     }
 
@@ -235,6 +234,12 @@ let myChart = Highcharts.chart('container', {
     yAxis: {
         title: {
             text: 'Number of Enrollments'
+        }
+    },
+
+    xAxis: {
+        title: {
+            text: 'Date'
         }
     },
 
